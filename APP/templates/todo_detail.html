@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% extends 'navbar.html' %}  {% block content %}
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Todo Details </h1>
+      <p><strong>ID:</strong> {{ todo.id }}</p>
+      <p><strong>Title:</strong> {{ todo.title }}</p>
+      <p><strong>Description:</strong> {{ todo.description }}</p>
+      <p><strong>Status:</strong>
+        {% if todo.completed %}
+          <span class="text-success">Completed</span>
+        {% else %}
+          <span class="text-danger">Uncompleted</span>
+        {% endif %}
+      </p>
+      <p><strong>Created by:</strong> {{ todo.created_by.username }}</p>
+      <p><strong>Created at:</strong> {{ todo.created_at }}</p>
+
+      <h2>Subtasks</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+           
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for subtask in subtasks %}
+          <tr>
+            <td>
+              <span class="subtask-title {% if subtask.completed %}completed{% endif %}">{{ subtask.title }}</span>
+              <form method="post" action="{% url "update_subtask" subtask.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="completed" value="{{ subtask.completed }}">
+                <button type="submit" class="btn btn-sm {% if subtask.completed %}btn-success{% else %}btn-secondary{% endif %} ">
+                  {% if subtask.completed %}Completed{% else %}Uncompleted{% endif %}
+                </button>
+              </form>
+            </td>
+            <td>
+              <a href="{% url 'edit_subtask' subtask.id %}" class="btn btn-sm btn-warning">Edit Subtask</a>
+            </td>
+            
+            <td>
+              <form method="post" action="{% url 'delete_subtask' subtask.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-danger">Delete Subtask</button>
+              </form>
+            </td>
+          </tr>
+          <tr class="horizontal-line {% if subtask.completed %}d-none{% endif %}">
+            <td colspan="4"></td> </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <a href="{% url 'edit_todo' todo.id %}" class="btn btn-warning mb-2">Edit Todo</a>
+      <form method="post" action="{% url 'delete_todo' todo.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete Todo</button>
+      </form>
+      <br>
+      <a href="{% url "add_subtask" todo.id %}" class="btn btn-primary">Add Subtask</a>
+    </div>
+  </div>
+</div>
+<style>
+  .subtask-title {
+  display: inline-block; 
+}
+
+  .subtask-title.completed {
+  text-decoration: line-through;
+}
+
+  </style>
+{% endblock %}
