@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% extends 'navbar.html' %}
+{% block content %}
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="jumbotron text-center d-flex align-items-center justify-content-center" style="height: 300px; background-color: #000; /* Black background */">
+        <h1 class="display-4 text-light">Welcome to Django App</h1>
+        <p class="lead text-light">A powerful and versatile web framework for building complex web applications.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="feature-box bg-success text-center p-4 rounded-lg">
+            <h2>Rapid Development</h2>
+            <p>Django's high-level abstractions and batteries-included approach allow for rapid development, saving you time and effort.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-box bg-success text-center p-4 rounded-lg">
+            <h2>Security Built-In</h2>
+            <p>Django prioritizes security with built-in features like user authentication, CSRF protection, and SQL injection prevention.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-box bg-success text-center p-4 rounded-lg">
+            <h2>Scalability</h2>
+            <p>Django is designed to handle small to large-scale web applications, efficiently scaling to meet your needs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <div class="feature-box bg-success text-center p-4 rounded-lg">
+            <h2>Large Community</h2>
+            <p>Django boasts a vast and active community providing extensive support, resources, and libraries.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-box bg-success text-center p-4 rounded-lg">
+            <h2>Admin Interface</h2>
+            <p>Django provides a user-friendly admin interface for easy management of your application's data and users.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-box bg-success text-center p-4 rounded-lg">
+            <h2>Flexibility</h2>
+            <p>Django allows for customization and integration with various third-party libraries to fit your specific project requirements.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center my-4 d-flex justify-content-center">
+        <a class="btn btn-dark mx-2" href="{% url "signin" %}">Login</a>
+        <a class="btn btn-dark mx-2" href="{% url "signup" %}">Signup</a>
+      </div>
+      
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
+</html>

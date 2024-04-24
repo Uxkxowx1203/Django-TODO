@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% extends 'navbar.html' %}
+{% block content %}
+{% load static %}
+{% load bootstrap4 %}
+
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+    <style>
+        /* Dark theme styles */
+        body {
+            background-color: #110f0f; /* Dark background */
+            color: #000; /* Black text color for everything */
+            font-family: sans-serif; /* Basic font family */
+        }
+
+        /* White box for form */
+        .signup-form-wrapper {
+            background-color: #fff; /* White background */
+            border-radius: 5px; /* Rounded corners */
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        }
+
+        /* Basic form styles (no text color needed) */
+        form {
+            display: flex; /* Arrange elements horizontally */
+            flex-direction: column; /* Stack elements vertically */
+            gap: 1rem; /* Spacing between form elements */
+        }
+
+        label {
+            margin-bottom: 5px; /* Small margin below label */
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        select {
+            padding: 10px;
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 3px; /* Subtle border radius */
+        }
+
+        input[type="submit"] {
+            background-color: #333; /* Dark gray button */
+            color: #fff; /* White text */
+            padding: 10px 20px;
+            border: none; /* Remove border for cleaner look */
+            border-radius: 3px; /* Subtle border radius */
+            cursor: pointer; /* Indicate clickable element */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid p-2">
+        <div class="row my-2 mx-2 p-5">
+            <div class="col-md-10 signup-form-wrapper mx-auto my-auto">
+                <br>
+                <h1 class="text-center">Sign Up Here</h1>
+                <form method="post" class="ml-3" enctype='multipart/form-data'>
+                    <br>
+                    {% bootstrap_form form %}
+                    {% csrf_token %}
+                    <br>
+                    <input type="submit" name="" onclick="OnClick()" style="margin-top:25px;margin-bottom:15px;border-radius:20px" class="btn btn-success btn-block p-2 m-1" value="Sign Up">
+                    <script>
+                        function OnClick() {
+                            alert("Thank you for registering");
+                        }
+                    </script>
+
+                </form>
+
+                <br>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
+</html>
